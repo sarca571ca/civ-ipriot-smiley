@@ -43,7 +43,7 @@ h4::before {
 
 # Evidence and Knowledge
 
-This document includes instructions and knowledge questions that must be completed to receive a *Competent* grade on this portfolio task.
+This document includes instructions and knowledge questions that must be completed to receive a _Competent_ grade on this portfolio task.
 
 ## Required evidence
 
@@ -93,7 +93,7 @@ Address the following tasks and questions based on the code provided in this rep
 3. Run the project locally by executing the `main.py` file
 4. Evidence this by providing screenshots of the project directory structure and the output of the `main.py` file
 
-![Local Execution (INSERT YOUR SCREENSHOT)](screenshots/CREATE_A_SCREENSHOT_OF_YOUR_local_setup.png)
+![Local Execution](screenshots/initial_run.png)
 
 If you are running on a Raspberry Pi, you can use the following command to run the project and then screenshot the result:
 
@@ -104,96 +104,118 @@ python3 main.py
 
 ### Fundamental code comprehension
 
- Answer each of the following questions **as they relate to that code** supplied by in this repository (ignore `sense_hat.py`):
+Answer each of the following questions **as they relate to that code** supplied by in this repository (ignore `sense_hat.py`):
 
-1. Examine the code for the `smiley.py` file and provide  an example of a variable of each of the following types and their corresponding values (`_` should be replaced with the appropriate values):
+1. Examine the code for the `smiley.py` file and provide an example of a variable of each of the following types and their corresponding values (`_` should be replaced with the appropriate values):
 
-   | Type                    | name       | value          |
-   | ----------              | ---------- | -------------- |
-   | built-in primitive type | _          |  _             |
-   | built-in composite type | _          |  _             |
-   | user-defined type       | _          |  _             |
+   | Type                    | name                      | value                    |
+   | ----------------------- | ------------------------- | ------------------------ |
+   | built-in primitive type | \self.sense_hat.low_light | \dimmed(True by default) |
+   | built-in composite type | \WHITE                    | \(255, 255, 255)         |
+   | user-defined type       | \self.sense_hat           | \SenseHat()              |
 
 2. Fill in (`_`) the following table based on the code in `smiley.py`:
 
-   | Object                   | Type                    |
-   | ------------             | ----------------------- |
-   | self.pixels              | _                       |
-   | A member of self.pixels  | _                       |
-   | self                     | _                       |
+   | Object                  | Type    |
+   | ----------------------- | ------- |
+   | self.pixels             | \list   |
+   | A member of self.pixels | \tuple  |
+   | self                    | \Smiley |
 
 3. Examine the code for `smiley.py`, `sad.py`, and `happy.py`. Give an example of each of the following control structures using an example from **each** of these files. Include the first line and the line range:
 
-   | Control Flow | File       | First line  | Line range  |
-   | ------------ | ---------- | ----------- | ----------- |
-   |  sequence    |  _         | _           | _           |
-   |  selection   | _          | _           | _           |
-   |  iteration   | _          | _           | _           |
+   | Control Flow | File      | First line                       | Line range |
+   | ------------ | --------- | -------------------------------- | ---------- |
+   | sequence     | \happy.py | \self.draw_eyes(wide_open=False) | \41-45     |
+   | selection    | \sad.py   | \if wide_open:                   | \26-30     |
+   | iteration    | \happy.py | \for pixel in eyes:              | \32-33     |
 
 4. Though everything in Python is an object, it is sometimes said to have four "primitive" types. Examining the three files `smiley.py`, `sad.py`, and `happy.py`, identify which of the following types are used in any of these files, and give an example of each (use an example from the code, if applicable, otherwise provide an example of your own):
 
-   | Type                    | Used? | Example |
-   | ----------------------- | ----- | --------|
-   | int                     | _     | _          |
-   | float                   | _     | _          |
-   | str                     | _     | _          |
-   | bool                    | _     | _          |
+   | Type  | Used? | Example                                                                    |
+   | ----- | ----- | -------------------------------------------------------------------------- |
+   | int   | \Yes  | \for pixel in eyes: eyes is a list of int's so pixel is an int             |
+   | float | \Yes  | \def blink(self, delay=0.25): deley is assigned 0.25 float                 |
+   | str   | \No   | \my_string = "My String"                                                   |
+   | bool  | \Yes  | \def dim_display(self, dimmed=True): dimmed is assigned bool value of True |
 
 5. Examining `smiley.py`, provide an example of a class variable and an instance variable (attribute). Explain **why** one is defined as a class variable and the other as an instance variable.
 
-> Your answer here
->
+> class variable -> `WHITE = (255, 255, 255)` will be set at object creation and cant be changed after object creation
+> instance variable -> `self.sense_hat = SenseHat()` will be specific to each created object/instance so can vary
 
-6. Examine `happy.py`, and identify the constructor (initializer) for the `Happy` class:
-   1. What is the purpose of a constructor (in general) and this one (in particular)?
+6.  Examine `happy.py`, and identify the constructor (initializer) for the `Happy` class:
 
-   > Your answer here
-   >
+    1. What is the purpose of a constructor (in general) and this one (in particular)?
 
-   2. What statement(s) does it execute (consider the `super` call), and what is the result?
+    > To perform certain task or set attributes upon object creation.
+    > The Happy initializer first runs the initializer for the Smiley class. Then runs methods self.draw_mouth() and self.draw_eyes().
 
-   > Your answer here
-   >
+    2. What statement(s) does it execute (consider the `super` call), and what is the result?
+
+    > from the Inherited `Smiley` class `super().__init__()`
+
+    ```python
+    self.sense_hat = SenseHat()
+
+    Y = self.YELLOW
+    O = self.BLANK
+    self.pixels = [
+        O, Y, Y, Y, Y, Y, Y, O,
+        Y, Y, Y, Y, Y, Y, Y, Y,
+        Y, Y, Y, Y, Y, Y, Y, Y,
+        Y, Y, Y, Y, Y, Y, Y, Y,
+        Y, Y, Y, Y, Y, Y, Y, Y,
+        Y, Y, Y, Y, Y, Y, Y, Y,
+        Y, Y, Y, Y, Y, Y, Y, Y,
+        O, Y, Y, Y, Y, Y, Y, O,
+    ]
+
+    ```
+
+    > from the `Happy` class
+
+    ```python
+    super().__init__() # initializer for the inherited `Smiley` class
+
+    self.draw_mouth()
+    self.draw_eyes()
+    ```
 
 ### Code style
 
 1. What code style is used in the code? Is it likely to be the same as the code style used in the SenseHat? Give to reasons as to why/why not:
-   
+
 > Your answer here
->
 
 2. List three aspects of this convention you see applied in the code.
 
 > Your answer here
->
 
 3. Give two examples of organizational documentation in the code.
 
 > Your answer here
->
 
 ### Identifying and understanding classes
 
 > Note: Ignore the `sense_hat.py` file when answering the questions below
 
 1. List all the classes you identified in the project. Indicate which classes are base classes and which are subclasses. For subclasses, identify all direct base classes.
-  
-  Use the following table for your answers:
+
+Use the following table for your answers:
 
 | Class Name | Super or Sub? | Direct parent(s) |
 | ---------- | ------------- | ---------------- |
 | NotReal    | Sub           | NotRealParent    |
-|   ...      |   ...         |      ...         |
+| ...        | ...           | ...              |
 
 2. Explain the concept of abstraction, giving an example from the project (note "implementing an ABC" is **not** in itself an example of abstraction). (Max 150 words)
 
 > Your answer here
->
 
 3. What is the name of the process of deriving from base classes? What is its purpose in this project? (Max 150 words)
 
 > Your answer here
->
 
 ### Compare and contrast classes
 
@@ -201,28 +223,21 @@ Compare and contrast the classes Happy and Sad.
 
 1. What is the key difference between the two classes?
    > Your answer here
-   >
 2. What are the key similarities?
    > Your answer here
-   >
 3. What difference stands out the most to you and why?
    > Your answer here
-   >
 4. How does this difference affect the functionality of these classes
    > Your answer here
-   >
 
 ### Where is the Sense(Hat) in the code?
 
 1. Which class(es) utilize the functionality of the SenseHat?
    > Your answer here
-   >
 2. Which of these classes directly interact with the SenseHat functionalities?
    > Your answer here
-   >
 3. Discuss the hiding of the SenseHAT in terms of encapsulation (100-200 Words)
    > Your answer here
-   >
 
 ### Sad Smileys Can’t Blink (Or Can They?)
 
@@ -233,22 +248,19 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
 1. Does the code's author believe that every `Smiley` should be able to blink? Explain.
 
 > Your answer here
->
 
 2. For those smileys that blink, does the author expect them to blink in the same way? Explain.
 
 > Your answer here
->
 
 3. Referring to the implementation of blink in the Happy and Sad Smiley classes, give a brief explanation of what polymorphism is.
 
 > Your answer here
->
 
 4. How is inheritance used in the blink method, and why is it important for polymorphism?
 
 > Your answer here
->
+
 1. **Implement Blink in Sad Class:**
 
    - Create a new method called `blink` within the Sad class. Ensure you use the same method signature as in the Happy class:
@@ -257,6 +269,8 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
    def blink(self, delay=0.25):
        pass  # Replace 'pass' with your implementation
    ```
+
+````
 
 2. **Code Implementation:** Implement the code that allows the Sad smiley to blink. Use the implementation from the Happy Smiley as a reference. Ensure your new method functions similarly by controlling the blink duration through the `delay` argument.
 
@@ -372,3 +386,4 @@ Include a screenshot of the sad smiley or the modified `main.py`:
   4. **Design and Implement An Angry Smiley:** Create an Angry smiley class that inherits from the `Smiley` class. Set the color of the Angry smiley to red by passing `self.RED` as the `complexion` argument in the superclass call.
 
   ***
+````
