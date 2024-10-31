@@ -293,10 +293,6 @@ Unlike the `Happy` smiley, the current implementation of the `Sad` smiley does n
        pass  # Replace 'pass' with your implementation
    ```
 
-```
-
-```
-
 2. **Code Implementation:** Implement the code that allows the Sad smiley to blink. Use the implementation from the Happy Smiley as a reference. Ensure your new method functions similarly by controlling the blink duration through the `delay` argument.
 
 3. **Testing the Implementation:**
@@ -418,7 +414,3 @@ Include a screenshot of the sad smiley or the modified `main.py`:
   4. **Design and Implement An Angry Smiley:** Create an Angry smiley class that inherits from the `Smiley` class. Set the color of the Angry smiley to red by passing `self.RED` as the `complexion` argument in the superclass call.
 
   ***
-
-```
-
-```
